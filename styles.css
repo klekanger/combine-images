@@ -150,8 +150,8 @@ header p {
 .combine-btn {
   display: block;
   margin: 0 auto;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #f3f4f6;
+  color: #374151;
   border: none;
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -203,6 +203,47 @@ header p {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.format-selection {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 2rem;
+}
+
+.format-selection label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.format-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  appearance: none;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  height: 48px;
+  background: white url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right 0.5rem center/1.5em;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.format-select:hover {
+  border-color: #667eea;
+  background-color: #f8f9ff;
+}
+
+.format-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
 }
 
 .download-btn,
@@ -210,6 +251,7 @@ header p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  height: 48px;
   padding: 1rem 2rem;
   border-radius: 12px;
   font-size: 1rem;
@@ -239,6 +281,7 @@ header p {
   background: #f3f4f6;
   color: #374151;
   border: 2px solid #e5e7eb;
+  height: 48px;
 }
 
 .reset-btn:hover {
@@ -296,6 +339,18 @@ header p {
   .download-section {
     flex-direction: column;
     align-items: center;
+  }
+
+  .format-selection {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .format-select {
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
   }
 
   .download-btn,

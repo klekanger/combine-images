@@ -22,6 +22,7 @@ class ImageCombiner {
     this.resultCanvas = document.getElementById("resultCanvas");
     this.downloadBtn = document.getElementById("downloadBtn");
     this.resetBtn = document.getElementById("resetBtn");
+    this.formatSelect = document.getElementById("formatSelect");
   }
 
   setupEventListeners() {
@@ -233,8 +234,30 @@ class ImageCombiner {
   downloadImage() {
     if (!this.resultCanvas) return;
 
+    const selectedFormat = this.formatSelect.value;
     const link = document.createElement("a");
-    link.download = "kombinert-bilde.webp";
+
+    // Set appropriate MIME type and file extension based on selected format
+    let mimeType, fileExtension;
+    switch (selectedFormat) {
+      case "webp":
+        mimeType = "image/webp";
+        fileExtension = "webp";
+        break;
+      case "png":
+        mimeType = "image/png";
+        fileExtension = "png";
+        break;
+      case "jpg":
+        mimeType = "image/jpeg";
+        fileExtension = "jpg";
+        break;
+      default:
+        mimeType = "image/webp";
+        fileExtension = "webp";
+    }
+
+    link.download = `kombinert-bilde.${fileExtension}`;
 
     this.resultCanvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob);
@@ -245,7 +268,7 @@ class ImageCombiner {
       document.body.removeChild(link);
 
       URL.revokeObjectURL(url);
-    }, "image/webp");
+    }, mimeType);
   }
 
   reset() {
