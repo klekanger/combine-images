@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-i-ett</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>To-i-ett</h1>
+      <p>Velg to bilder for å kombinere dem side om side</p>
+    </header>
+
+    <main>
+      <div class="upload-section">
+        <div class="upload-area" id="uploadArea1">
+          <div class="upload-content">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7,10 12,15 17,10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <h3>Velg første bilde</h3>
+            <p>Klikk for å velge, eller dra og slipp</p>
+            <input type="file" id="imageInput1" accept="image/*" hidden>
+          </div>
+        </div>
+
+        <div class="upload-area" id="uploadArea2">
+          <div class="upload-content">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7,10 12,15 17,10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <h3>Velg andre bilde</h3>
+            <p>Klikk for å velge, eller dra og slipp</p>
+            <input type="file" id="imageInput2" accept="image/*" hidden>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-section" id="previewSection" style="display: none;">
+        <h2>Forhåndsvisning</h2>
+        <div class="preview-container">
+          <div class="image-preview">
+            <h4>Bilde 1</h4>
+            <img id="preview1" alt="Forhåndsvisning 1">
+          </div>
+          <div class="image-preview">
+            <h4>Bilde 2</h4>
+            <img id="preview2" alt="Forhåndsvisning 2">
+          </div>
+        </div>
+        <button id="combineBtn" class="combine-btn">Kombiner bilder</button>
+      </div>
+
+      <div class="result-section" id="resultSection" style="display: none;">
+        <h2>Kombinert bilde</h2>
+        <div class="result-container">
+          <canvas id="resultCanvas"></canvas>
+          <div class="download-section">
+            <button id="downloadBtn" class="download-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7,10 12,15 17,10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Last ned kombinert bilde
+            </button>
+            <button id="resetBtn" class="reset-btn">Start på nytt</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
