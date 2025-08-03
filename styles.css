@@ -378,3 +378,9 @@ header p {
     transform: translateY(0);
   }
 }
+
+.resolution-info {
+  margin: auto;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
+}

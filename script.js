@@ -178,19 +178,31 @@ class ImageCombiner {
     const img2 = this.images[1].element;
 
     const maxHeight = Math.max(img1.height, img2.height);
-    const totalWidth = Math.max(img1.width, img2.width) * 2;
-    const halfWidth = totalWidth / 2;
+    let totalWidth = Math.max(img1.width, img2.width) * 2;
+    let finalHeight = maxHeight;
 
-    this.resultCanvas.width = totalWidth;
-    this.resultCanvas.height = maxHeight;
+    // Restrict maximum width to 3000 pixels
+    const MAX_WIDTH = 3000;
+    if (totalWidth > MAX_WIDTH) {
+      const scaleFactor = MAX_WIDTH / totalWidth;
+      totalWidth = MAX_WIDTH;
+      finalHeight = Math.round(maxHeight * scaleFactor);
+      this.resultCanvas.width = totalWidth;
+      this.resultCanvas.height = finalHeight;
+    } else {
+      this.resultCanvas.width = totalWidth;
+      this.resultCanvas.height = finalHeight;
+    }
+
+    const halfWidth = totalWidth / 2;
 
     const ctx = this.resultCanvas.getContext("2d");
 
-    ctx.clearRect(0, 0, totalWidth, maxHeight);
+    ctx.clearRect(0, 0, totalWidth, finalHeight);
 
-    this.drawImageCentered(ctx, img1, 0, 0, halfWidth, maxHeight);
+    this.drawImageCentered(ctx, img1, 0, 0, halfWidth, finalHeight);
 
-    this.drawImageCentered(ctx, img2, halfWidth, 0, halfWidth, maxHeight);
+    this.drawImageCentered(ctx, img2, halfWidth, 0, halfWidth, finalHeight);
 
     ctx.save();
     ctx.fillStyle = "#000000";
@@ -198,7 +210,7 @@ class ImageCombiner {
 
     const lineX = Math.round(halfWidth);
     const lineWidth = STROKE_WIDTH;
-    ctx.fillRect(lineX - lineWidth / 2, 0, lineWidth, maxHeight);
+    ctx.fillRect(lineX - lineWidth / 2, 0, lineWidth, finalHeight);
     ctx.restore();
 
     this.resultSection.style.display = "block";
@@ -227,8 +239,19 @@ class ImageCombiner {
       offsetY = (height - drawHeight) / 2;
     }
 
+    // Save the current context state
+    ctx.save();
+
+    // Create a clipping path to ensure the image stays within its designated area
+    ctx.beginPath();
+    ctx.rect(x, y, width, height);
+    ctx.clip();
+
     // Draw the image centered in the target area
     ctx.drawImage(img, x + offsetX, y + offsetY, drawWidth, drawHeight);
+
+    // Restore the context state
+    ctx.restore();
   }
 
   downloadImage() {
