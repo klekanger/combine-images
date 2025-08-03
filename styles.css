@@ -384,3 +384,20 @@ header p {
   padding-top: 0.5rem;
   font-size: 0.75rem;
 }
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: #ddd;
+}
+
+footer p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+footer a {
+  color: #ddd;
+
+}
